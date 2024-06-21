@@ -11,6 +11,12 @@
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/bookicon"/>
+        android:src="@drawable/bookicon"
+        android:id="@+id/Logicon"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vui lòng ấn vào icon để tiếp tục"
+        android:layout_marginTop="20dp"/>
 
 </LinearLayout>

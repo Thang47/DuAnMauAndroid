@@ -6,7 +6,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper  extends SQLiteOpenHelper {
     public DbHelper(Context context) {
-        super(context, "QuanLyThuVien", null, 1);
+        super(context, "QuanLyThuVien", null, 2);
     }
 
     @Override
@@ -53,6 +53,7 @@ public class DbHelper  extends SQLiteOpenHelper {
                 "maSach integer references SACH(maSach)," +
                 "giaThue integer not null," +
                 "ngay date not null," +
+                "gioMuonSach date not null, "+
                 "traSach integer not null)";
         db.execSQL(tPhieuMuon);
     }

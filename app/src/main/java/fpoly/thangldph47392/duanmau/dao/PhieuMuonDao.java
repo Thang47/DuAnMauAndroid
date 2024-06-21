@@ -19,6 +19,7 @@ public class PhieuMuonDao {
     private SQLiteDatabase db;
     private Context context;
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat stf = new SimpleDateFormat("HH;mm");
     public PhieuMuonDao() {
     }
 
@@ -34,6 +35,7 @@ public class PhieuMuonDao {
         values.put("maTV", phieuMuon.getMaTV());
         values.put("maSach", phieuMuon.getMaSach());
         values.put("ngay", sdf.format(phieuMuon.getNgay()));
+        values.put("gioMuonSach", stf.format(phieuMuon.getGioMuonSach()));
         values.put("giaThue", phieuMuon.getTienThue());
         values.put("traSach", phieuMuon.getTraSach());
 
@@ -46,6 +48,7 @@ public class PhieuMuonDao {
         values.put("maTV", phieuMuon.getMaTV());
         values.put("maSach", phieuMuon.getMaSach());
         values.put("ngay", sdf.format(phieuMuon.getNgay()));
+        values.put("gioMuonSach", stf.format(phieuMuon.getGioMuonSach()));
         values.put("giaThue", phieuMuon.getTienThue());
         values.put("traSach", phieuMuon.getTraSach());
 
@@ -71,13 +74,12 @@ public class PhieuMuonDao {
             phieuMuon.setTienThue(Integer.parseInt(c.getString(c.getColumnIndex("giaThue"))));
             try {
                 phieuMuon.setNgay(sdf.parse(c.getString(c.getColumnIndex("ngay"))));
+                phieuMuon.setGioMuonSach(stf.parse(c.getString(c.getColumnIndex("gioMuonSach"))));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
             list.add(phieuMuon);
         }
-
         return list;
     }
 

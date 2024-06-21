@@ -28,12 +28,13 @@ public class PhieuMuonAdapter extends ArrayAdapter<PhieuMuon>  {
     private PhieuMuonFragment fragment;
     private List<PhieuMuon> list;
 
-    private TextView tvMaPM, tvTenTV, tvTenSach, tvTienThue, tvNgay, tvTraSach;
+    private TextView tvMaPM, tvTenTV, tvTenSach, tvTienThue, tvNgay,tvGio, tvTraSach;
     private ImageView imgDel;
 
     private SachDao sachDao;
     private ThanhVienDao thanhVienDao;
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat stf = new SimpleDateFormat("HH:mm");
 
     public PhieuMuonAdapter(@NonNull Context context, PhieuMuonFragment fragment, List<PhieuMuon> list) {
         super(context, 0, list);
@@ -63,12 +64,20 @@ public class PhieuMuonAdapter extends ArrayAdapter<PhieuMuon>  {
             Sach sach = sachDao.getID(String.valueOf(item.getMaSach()));
             tvTenSach = v.findViewById(R.id.tvTenSach);
             tvTenSach.setText("Tên sách: " + sach.getTenSach());
+            if(sach.getGiaThue() >50000){
+                tvTenSach.setTextColor(Color.RED);
+            }else {
+                tvTenSach.setTextColor(Color.BLUE);
+            }
 
             tvTienThue = v.findViewById(R.id.tvTienThue);
             tvTienThue.setText("Tiền thuê: " + item.getTienThue());
 
             tvNgay = v.findViewById(R.id.tvNgay);
             tvNgay.setText("Ngày thuê: " + sdf.format(item.getNgay()));
+
+            tvGio = v.findViewById(R.id.tvGio);
+            tvGio.setText("Gio : " + stf.format(item.getGioMuonSach()));
 
             tvTraSach = v.findViewById(R.id.tvTraSach);
             if (item.getTraSach() == 1) {

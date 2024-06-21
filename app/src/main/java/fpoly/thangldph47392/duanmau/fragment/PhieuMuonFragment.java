@@ -45,7 +45,7 @@ public class PhieuMuonFragment  extends Fragment {
     private FloatingActionButton fab;
     private EditText edMaPM;
     private Spinner spTV, spSach;
-    private TextView tvNgay, tvTienThue;
+    private TextView tvNgay, tvGio,  tvTienThue;
     private CheckBox chkTraSach;
     private Button btnSave, btnCancel;
 
@@ -66,6 +66,7 @@ public class PhieuMuonFragment  extends Fragment {
     private int maSach, tienThue, positionSach;
 
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    private SimpleDateFormat stf = new SimpleDateFormat("HH:mm");
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -108,13 +109,13 @@ public class PhieuMuonFragment  extends Fragment {
         spTV = dialog.findViewById(R.id.spTV);
         spSach = dialog.findViewById(R.id.spSach);
         tvNgay = dialog.findViewById(R.id.tvNgay);
+        tvGio = dialog.findViewById(R.id.tvGio);
         tvTienThue = dialog.findViewById(R.id.tvTienThue);
         chkTraSach = dialog.findViewById(R.id.chkTraSach);
         btnCancel = dialog.findViewById(R.id.btnCancelPM);
         btnSave = dialog.findViewById(R.id.btnSavePM);
-
         tvNgay.setText("Ngày: " + sdf.format(new Date()));
-
+        tvGio.setText("Giờ: " + stf.format(new Date()));
         thanhVienDao = new ThanhVienDao(context);
         thanhVienList = new ArrayList<>();
         thanhVienList = thanhVienDao.getAll();
@@ -196,6 +197,7 @@ public class PhieuMuonFragment  extends Fragment {
                 item.setMaTV(maThanhVien);
                 item.setMaSach(maSach);
                 item.setNgay(new Date());
+                item.setGioMuonSach(new Date());
                 item.setTienThue(tienThue);
                 if (chkTraSach.isChecked()) {
                     item.setTraSach(1);
